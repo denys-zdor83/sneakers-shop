@@ -13,6 +13,3 @@ import Card from './Card.vue'
     />
   </div>
 </template>
-
-<style scoped>
-</style>
