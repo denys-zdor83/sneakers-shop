@@ -1,7 +1,21 @@
 <script setup lang="ts">
+import { onMounted, ref } from 'vue';
+import axios from 'axios';
+
 import Header from './components/Header.vue'
 import CardList from './components/CardList.vue'
 import Drawer from './components/Drawer.vue'
+
+const products = ref([])
+
+onMounted(async () => {
+  try {
+    const {data} = await axios.get('https://03eef75a3e96a712.mokky.dev/goods')
+    products.value = data
+  } catch (error) {
+    console.log(error)
+  }
+})
 </script>
 
 <template>
@@ -32,10 +46,12 @@ import Drawer from './components/Drawer.vue'
             >
           </div>
         </div>
-
       </div>
 
-      <CardList />
+      <div class="mt-10">
+        <CardList :items="products" />
+      </div>
+
     </div>
   </div>
 </template>

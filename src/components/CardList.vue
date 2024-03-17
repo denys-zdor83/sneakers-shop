@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import Card from './Card.vue'
+
+defineProps({
+  items: Array,
+})
 </script>
 
 <template>
   <div class="grid grid-cols-4 gap-5">
     <Card 
-      title="Men's sneakers" 
-      imageUrl="sneakers/sneakers-1.jpg" 
-      :price="1200"
+      v-for="item in items" 
+      :key="item.id"
+      :title="item.title" 
+      :imageUrl="item.imageUrl" 
+      :price="item.price"
       :isAdded="true"
       :isFavorite="false"
     />
