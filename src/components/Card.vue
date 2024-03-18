@@ -1,5 +1,6 @@
 <script setup lang="ts">
 defineProps({
+  id: Number,
   price: Number,
   title: String,
   imageUrl: String,
@@ -8,6 +9,7 @@ defineProps({
   onClickAdd: Function,
   onClickFavorite: Function,
 })
+
 </script>
 
 <template>

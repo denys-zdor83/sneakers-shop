@@ -12,6 +12,51 @@ const filters = reactive({
   searchQuery: ''
 })
 
+const fetchFavorites = async () => {
+  try {
+    const {data: favorites} = await axios.get('https://03eef75a3e96a712.mokky.dev/favorites')
+
+    products.value = products.value.map(item => {
+      const favorite = favorites.find(favorite => favorite.parentId === item.id)
+
+      if (!favorite) {
+        return item
+      }
+
+      return {
+        ...item,
+        isFavorite: true,
+        favoriteId: favorite.id,
+      }
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+const addToFavorites = async item => {
+  try {
+    if (!item.isFavorite) {
+      const obj = {
+        parentId: item.id,
+      }
+      item.isFavorite = true
+
+      const { data } = await axios.post('https://03eef75a3e96a712.mokky.dev/favorites', obj)
+
+      item.favoriteId = data.id
+    } else {
+      item.isFavorite = false
+      
+      await axios.delete(`https://03eef75a3e96a712.mokky.dev/favorites/${item.favoriteId}`)
+      
+      item.favoriteId = null
+    }
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 const fetchItems = async () => {
   const params = {
     sortBy: filters.sortBy,
@@ -25,7 +70,15 @@ const fetchItems = async () => {
     const {data} = await axios.get('https://03eef75a3e96a712.mokky.dev/goods', { 
       params 
     })
-    products.value = data
+
+    products.value = data.map(obj => {
+      return {
+        ...obj,
+        isAdded: false,
+        favoriteId: null,
+        isFavorite: false,
+      }
+    })
   } catch (error) {
     console.log(error)
   }
@@ -39,13 +92,15 @@ const onChangeSearch = event => {
   filters.searchQuery = event.target.value
 }
 
-onMounted(fetchItems)
+onMounted(async () => {
+  await fetchItems()
+  await fetchFavorites()
+})
 
 watch(
   filters, 
   fetchItems
 )
-
 </script>
 
 <template>
@@ -83,7 +138,10 @@ watch(
       </div>
 
       <div class="mt-10">
-        <CardList :items="products" />
+        <CardList 
+          :items="products" 
+          @addToFavorites="addToFavorites"
+        />
       </div>
 
     </div>
