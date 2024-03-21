@@ -17,6 +17,7 @@ defineProps({
     class="relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
   >
     <img 
+      v-if="onClickFavorite"
       :src="isFavorite ? '/like-2.svg' : '/like-1.svg'" 
       alt="Favorite" 
       class="absolute top-8 left-8" 
@@ -27,7 +28,10 @@ defineProps({
       {{ title }}
     </p>
 
-    <div class="flex justify-between mt-5">
+    <div 
+      v-if="onClickAdd"
+      class="flex justify-between mt-5"
+    >
       <div class="flex flex-col gap-2">
         <span class="text-slate-400">
           {{ $t('card.price') }}:
