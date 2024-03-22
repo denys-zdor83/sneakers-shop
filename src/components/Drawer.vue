@@ -1,15 +1,41 @@
 <script setup lang="ts">
+import { ref, computed, inject } from 'vue';
+import axios from 'axios';
+
 import CartItemList from './CartItemList.vue';
 import DrawerHead from './DrawerHead.vue';
 import Infoblock from './Infoblock.vue';
 
-const emit = defineEmits(['createOrder'])
-
-defineProps({
+const props = defineProps({
   totalPrice: Number,
   vatPrice: Number,
-  isButtonDisabled: Boolean,
 })
+
+const isCreatingOrder = ref(false)
+const { cartItems, closeDrawer } = inject('cart')
+const isCartEmpty = computed(() => cartItems.value.length === 0)
+const isCartButtonDisabled = computed(() => isCreatingOrder.value || isCartEmpty.value)
+const orderId = ref(null)
+
+const createOrder = async () => {
+  try {
+    isCreatingOrder.value = true
+
+    const { data } = await axios.post('https://03eef75a3e96a712.mokky.dev/orders', {
+      items: cartItems.value,
+      totalPrice: props.totalPrice.value,
+    })
+
+    cartItems.value = []
+    orderId.value = data.id
+
+    return data
+  } catch (error) {
+    console.log(error)
+  } finally {
+    isCreatingOrder.value = false
+  }
+}
 </script>
 
 <template>
@@ -18,13 +44,20 @@ defineProps({
     <DrawerHead />
 
     <div 
-      v-if="!totalPrice" 
+      v-if="!totalPrice || orderId" 
       class="flex h-full items-center"
     >
       <Infoblock 
-        title="dddddd" 
-        description="wwwwww" 
+        v-if="!totalPrice && !orderId"
+        :title="$t('messages.empty_cart.title')" 
+        :description="$t('messages.empty_cart.description')" 
         imageUrl="/package-icon.png" 
+      />
+      <Infoblock 
+        v-if="orderId"
+        :title="$t('messages.order_sent.title', { orderId })" 
+        :description="$t('messages.order_sent.description')" 
+        imageUrl="/order-success-icon.png" 
       />
     </div>
 
@@ -49,9 +82,9 @@ defineProps({
         </div>
 
         <button 
-          :disabled="isButtonDisabled"
+          :disabled="isCartButtonDisabled "
           class="mt-4 bg-lime-500 w-full rounded-xl py-3 text-white hover:bg-lime-600 active:bg-lime-700 disabled:bg-slate-400 transition cursor-pointer"
-          @click="emit('createOrder')"
+          @click="createOrder"
         >
           {{ $t('drawer.order') }}
         </button>
