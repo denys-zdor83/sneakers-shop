@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { inject, reactive, watch, ref, onMounted } from 'vue';
 import axios from 'axios';
+
+import debounce from 'lodash.debounce'
 import CardList from '../components/CardList.vue'
 
 const { cartItems, addToCart, removeFromCart } = inject('cart')
@@ -94,9 +96,9 @@ const onChangeSelect = event => {
   filters.sortBy = event.target.value
 }
 
-const onChangeSearch = event => {
+const onChangeSearch = debounce(event => {
   filters.searchQuery = event.target.value
-}
+}, 400)
 
 watch(
   filters, 
