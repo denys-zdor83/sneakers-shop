@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
 
 import CardList from '../components/CardList.vue'
+
+import { API } from '../api'
 
 const favorites = ref([])
 
 onMounted(async () => {
   try {
-    const {data} = await axios.get('https://03eef75a3e96a712.mokky.dev/favorites?_relations=goods')
+    const params = {
+      _relations: 'goods'
+    }
+    const data = await API.UrlsService.GetAllFavorites(params)
+
     favorites.value = data.map(item => item.good)
   } catch (error) {
     console.log(error)
