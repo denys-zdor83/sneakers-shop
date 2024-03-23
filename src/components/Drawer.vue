@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref, computed, inject } from 'vue';
-import axios from 'axios';
 
 import CartItemList from './CartItemList.vue';
 import DrawerHead from './DrawerHead.vue';
 import Infoblock from './Infoblock.vue';
+
+import { API } from '../api'
 
 const props = defineProps({
   totalPrice: Number,
@@ -12,18 +13,19 @@ const props = defineProps({
 })
 
 const isCreatingOrder = ref(false)
-const { cartItems, closeDrawer } = inject('cart')
+const orderId = ref(null)
+const { cartItems } = inject('cart')
 const isCartEmpty = computed(() => cartItems.value.length === 0)
 const isCartButtonDisabled = computed(() => isCreatingOrder.value || isCartEmpty.value)
-const orderId = ref(null)
+const totalPrice = computed(() => props.totalPrice)
 
 const createOrder = async () => {
   try {
     isCreatingOrder.value = true
 
-    const { data } = await axios.post('https://03eef75a3e96a712.mokky.dev/orders', {
+    const data = await API.UrlsService.GetAllOrders({
       items: cartItems.value,
-      totalPrice: props.totalPrice.value,
+      totalPrice: totalPrice.value,
     })
 
     cartItems.value = []
@@ -39,7 +41,7 @@ const createOrder = async () => {
 </script>
 
 <template>
-  <div class="fixed top-0 left-0 w-full h-full bg-slate-500 z-10  opacity-50"></div>
+  <div class="fixed top-0 left-0 w-full h-full bg-slate-500 z-10 opacity-50"></div>
   <div class="bg-white w-96 h-full fixed right-0 top-0 z-20 p-8">
     <DrawerHead />
 
