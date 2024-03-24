@@ -7,5 +7,24 @@
     {
       "path": "./tsconfig.app.json"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "paths": {
+      "@loader-worker": [
+        "./src/workers/loading-worker"
+      ],
+      "@images": [
+        "../public"
+      ],
+      "@axios": [
+        "./src/plugins/axios"
+      ],
+      "@api": [
+        "./src/api"
+      ],           
+      "@components": [
+        "./src/components"
+      ],
+    }
+  }
 }

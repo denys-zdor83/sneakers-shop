@@ -1,4 +1,6 @@
-export * from "./urls.js";
+export * from "./orders.ts";
+export * from "./goods.ts";
+export * from "./favorites.ts";
 
 import type { AxiosResponse } from "axios";
 

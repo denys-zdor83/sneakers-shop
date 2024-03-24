@@ -4,8 +4,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import { i18n } from './plugins/i18n'
 import { autoAnimatePlugin } from '@formkit/auto-animate/vue'
+import { createGlobalLoader } from "@loader-worker";
 
 import './assets/main.css'
+
+createGlobalLoader()
 
 const routes = [
   { 

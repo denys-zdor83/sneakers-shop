@@ -1,20 +1,33 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import CardList from '@components/CardList.vue'
 
-import CardList from '../components/CardList.vue'
+import { API } from '@api'
+import { asyncGlobalSpinner } from "@loader-worker"
 
-import { API } from '../api'
+import type { 
+  IOneGoodsItem,
+  RGetAllFavorites,
+} from "@api/interfaces";
 
-const favorites = ref([])
+// --- Interfaces
+interface IParams {
+  _relations: string
+}
+// --- Interfaces
+
+const favorites: Ref<IOneGoodsItem[]> = ref([])
 
 onMounted(async () => {
   try {
-    const params = {
+    const params: IParams = {
       _relations: 'goods'
     }
-    const data = await API.UrlsService.GetAllFavorites(params)
+    const [data]: RGetAllFavorites[] = await asyncGlobalSpinner(
+      API.UrlsService.GetAllFavorites(params)
+    )
 
-    favorites.value = data.map(item => item.good)
+    favorites.value = data.map((item: RGetAllFavorites) => item.good)
+
   } catch (error) {
     console.log(error)
   }
@@ -23,7 +36,7 @@ onMounted(async () => {
 
 <template>
   <h2 class="text-3xl font-bold mb-8">
-    {{ $t('bookmarks.title') }}
+    {{ $t('favorites.title') }}
   </h2>
   <CardList 
     :items="favorites"
