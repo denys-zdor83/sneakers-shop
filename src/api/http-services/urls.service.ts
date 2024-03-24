@@ -1,32 +1,39 @@
-import axiosApiInstance from "../../plugins/axios";
-import { EndpointsEnum } from "../http-common/prefix.enum";
-
+import axiosApiInstance from "@axios";
+import { EndpointsEnum } from "@api/http-common/prefix.enum";
 import type {
   ServiceResponseType,
-} from "../interfaces";
+  IGetAllGoodsParams,
+  RGetAllGoods,
+  IPostAllOrdersData,
+  RPostAllOrders,
+  IGetAllFavoritesParams,
+  RGetAllFavorites,
+  IAddToFavoritesData,
+  RAddToFavorites,
+} from "@api/interfaces";
 
 export class UrlsService {
   public GetAllGoods (
-    params: any,
-  ): ServiceResponseType<any> {
+    params: IGetAllGoodsParams,
+  ): ServiceResponseType<RGetAllGoods> {
     return axiosApiInstance.get(EndpointsEnum.Urls.AllGoods, { params });
   }
 
-  public GetAllOrders (
-    data: any,
-  ): ServiceResponseType<any> {
+  public PostAllOrders (
+    data: IPostAllOrdersData,
+  ): ServiceResponseType<RPostAllOrders> {
     return axiosApiInstance.post(EndpointsEnum.Urls.AllOrders, data);
   }
 
   public GetAllFavorites (
-    params: any,
-  ): ServiceResponseType<any> {
+    params: IGetAllFavoritesParams,
+  ): ServiceResponseType<RGetAllFavorites[]> {
     return axiosApiInstance.get(EndpointsEnum.Urls.AllFavorites, { params });
   }
 
   public AddToFavorites (
-    data: any,
-  ): ServiceResponseType<any> {
+    data: IAddToFavoritesData,
+  ): ServiceResponseType<RAddToFavorites> {
     return axiosApiInstance.post(EndpointsEnum.Urls.AllFavorites, data);
   }
 

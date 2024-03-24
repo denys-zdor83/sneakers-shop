@@ -1,32 +1,46 @@
 <script setup lang="ts">
-import { ref, computed, inject } from 'vue';
+import CartItemList from '@components/CartItemList.vue';
+import DrawerHead from '@components/DrawerHead.vue';
+import Infoblock from '@components/Infoblock.vue';
 
-import CartItemList from './CartItemList.vue';
-import DrawerHead from './DrawerHead.vue';
-import Infoblock from './Infoblock.vue';
-
-import { API } from '../api'
+import { asyncGlobalSpinner } from "@loader-worker"
+import { API } from '@api'
+import type { 
+  IOneOrder,
+  RPostAllOrders,
+} from "@api/interfaces";
 
 const props = defineProps({
   totalPrice: Number,
   vatPrice: Number,
 })
 
-const isCreatingOrder = ref(false)
-const orderId = ref(null)
-const { cartItems } = inject('cart')
-const isCartEmpty = computed(() => cartItems.value.length === 0)
-const isCartButtonDisabled = computed(() => isCreatingOrder.value || isCartEmpty.value)
-const totalPrice = computed(() => props.totalPrice)
+// --- Interfaces
+interface IPayload {
+  items: IOneOrder[]
+  totalPrice: number
+}
+// --- Interfaces
 
-const createOrder = async () => {
+const isCreatingOrder: Ref<boolean> = ref(false)
+const orderId: Ref<number | null> = ref(null)
+const { cartItems } = inject('cart')
+const isCartEmpty: Ref<boolean> = computed(() => cartItems.value.length === 0)
+const isCartButtonDisabled: Ref<boolean> = computed(() => isCreatingOrder.value || isCartEmpty.value)
+const totalPrice: Ref<number> = computed(() => props.totalPrice)
+
+const createOrder = async (): Promise<void> => {
   try {
     isCreatingOrder.value = true
 
-    const data = await API.UrlsService.GetAllOrders({
+    const payload: IPayload = {
       items: cartItems.value,
       totalPrice: totalPrice.value,
-    })
+    }
+
+    const [data]: RPostAllOrders = await asyncGlobalSpinner(
+      API.UrlsService.PostAllOrders(payload)
+    )
 
     cartItems.value = []
     orderId.value = data.id

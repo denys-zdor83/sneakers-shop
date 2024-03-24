@@ -30,8 +30,8 @@
 
         <router-link to="/favorites">
           <li class="flex items-center gap-3 text-gray-500 hover:text-black cursor-pointer">
-            <img src="/heart.svg" alt="Bookmarks">
-            <span>{{ $t('header.bookmarks') }}</span>
+            <img src="/heart.svg" alt="Favorites">
+            <span>{{ $t('header.favorites') }}</span>
           </li>
         </router-link>
 

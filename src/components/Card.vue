@@ -9,7 +9,6 @@ defineProps({
   onClickAdd: Function,
   onClickFavorite: Function,
 })
-
 </script>
 
 <template>

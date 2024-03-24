@@ -1,28 +1,28 @@
 <script setup lang="ts">
-import { ref, watch, provide, computed } from 'vue';
+import Header from '@components/Header.vue'
+import Drawer from '@components/Drawer.vue'
 
-import Header from './components/Header.vue'
-import Drawer from './components/Drawer.vue'
+import type { IOneOrder } from "@api/interfaces";
 
-const cartItems = ref([])
-const isDrawerOpen = ref(false)
-const totalPrice = computed(() => cartItems.value.reduce((acc, item) => acc + item.price, 0))
-const vatPrice = computed(() =>  Math.round((totalPrice.value * 5) / 100))
+const cartItems: Ref<IOneOrder[]> = ref([])
+const isDrawerOpen: Ref<boolean> = ref(false)
+const totalPrice: Ref<number> = computed(() => cartItems.value.reduce((acc, item) => acc + item.price, 0))
+const vatPrice: Ref<number> = computed(() =>  Math.round((totalPrice.value * 5) / 100))
 
-const closeDrawer = () => {
+const closeDrawer = (): void => {
   isDrawerOpen.value = false
 }
 
-const openDrawer = () => {
+const openDrawer = (): void => {
   isDrawerOpen.value = true
 }
 
-const addToCart = item => {
+const addToCart = (item: IOneOrder): void => {
   cartItems.value.push(item)
   item.isAdded = true
 }
 
-const removeFromCart = item => {
+const removeFromCart = (item: IOneOrder): void => {
   cartItems.value.splice(cartItems.value.indexOf(item), 1)
   item.isAdded = false
 }
@@ -58,9 +58,7 @@ provide('cart', {
     />
 
     <div class="p-10">
-
       <router-view></router-view>
-
     </div>
   </div>
 </template>
