@@ -7,10 +7,10 @@
 </script>
 
 <template>
-  <header class="flex justify-between border-b border-slate-200 px-10 py-8">
+  <header class="flex justify-between border-b border-slate-200 px-10 py-8 max-sm:px-4 max-sm:py-4 max-lg:flex-col">
 
     <router-link to="/">
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-4 max-lg:mb-4">
         <img src="/logo.png" alt="Logo" class="w-10">
         <div>
           <h2 class="text-xl font-bold uppercase">{{ $t('header.shop_name') }}</h2>
@@ -22,10 +22,10 @@
     </router-link>
 
     <nav>
-      <ul class="flex items-center gap-10">
+      <ul class="flex items-center gap-10 max-lg:justify-between max-sm:gap-2 max-sm:flex-col">
         <li @click="emit('openDrawer')" class="flex items-center gap-3 text-gray-500 hover:text-black cursor-pointer">
           <img src="/cart.svg" alt="Cart">
-          <b>{{ totalPrice }} usd</b>
+          <b>{{ totalPrice }} {{ $t('header.currency') }}</b>
         </li>
 
         <router-link to="/favorites">

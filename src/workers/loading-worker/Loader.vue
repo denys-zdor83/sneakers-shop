@@ -28,7 +28,7 @@ watch(
 
 <style lang="scss" scoped>
 .spiner-wrapper {
-  background: #ffffffa1;
+  background: var(--spiner);
   top: 0;
   left: 0;
   width: 100%;

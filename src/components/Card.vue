@@ -22,7 +22,11 @@ defineProps({
       class="absolute top-8 left-8" 
       @click="onClickFavorite"
     />
-    <img :src="imageUrl" alt="Sneaker" />
+    <img 
+      class="w-full object-contain" 
+      :src="imageUrl" 
+      alt="Sneaker" 
+    />
     <p class="mt-2">
       {{ title }}
     </p>
@@ -35,7 +39,7 @@ defineProps({
         <span class="text-slate-400">
           {{ $t('card.price') }}:
         </span>
-        <span class="font-bold">{{ price }} usd</span>
+        <span class="font-bold">{{ price }} {{ $t('card.currency') }}</span>
       </div>
       <img 
         :src="isAdded ? '/checked.svg' : '/plus.svg'" 

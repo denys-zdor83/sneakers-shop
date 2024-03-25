@@ -164,14 +164,14 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex justify-between items-center">
-    <h2 class="text-3xl font-bold mb-8">
+  <div class="flex justify-between items-center gap-4 max-lg:flex-col max-lg:items-start">
+    <h2 class="text-3xl font-bold max-lg:mb-4">
       {{ $t('main_page.title') }}
     </h2>
 
-    <div class="flex gap-4">
+    <div class="flex gap-4 justify-end max-lg:flex-1 max-lg:w-full max-md:flex-col">
       <select 
-        class="py-2 px-3 border rounded-md outline-none"
+        class="py-2 px-3 border flex-1 rounded-md outline-none bg-white"
         @change="onChangeSelect" 
       >
         <option value="name">{{ $t('main_page.by_name') }}</option>
@@ -179,12 +179,12 @@ onMounted(async () => {
         <option value="-price">{{ $t('main_page.by_price_expensive') }}</option>
       </select>
 
-      <div class="relative">
+      <div class="relative flex-1">
         <img class="absolute left-4 top-3" src="/search.svg" alt="Search">
         <input 
           type="text"
           :placeholder="$t('main_page.search')"  
-          class="border rounded-md py-2 pl-12 pr-4 outline-none focus:border-gray-400 transition"
+          class="border w-full rounded-md py-2 pl-12 pr-4 outline-none focus:border-gray-400 transition"
           @input="onChangeSearch"
         >
       </div>

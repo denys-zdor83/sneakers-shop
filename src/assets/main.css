@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --blue_100: #a5c1ff;
+  --spiner: #ffffffa1;
+}
+
 body {
-  background-color: rgb(247, 254, 231);
+  background-color: var(--blue_100);
 }
