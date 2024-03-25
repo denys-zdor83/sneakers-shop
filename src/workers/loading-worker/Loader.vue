@@ -3,15 +3,11 @@
     class="spiner-wrapper spiner-wrapper__page"
     v-if="loading"
   >
-    <img :src="Loader" alt="Loader" />
+    <img src="/loader.svg" alt="Loader" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { watch, ref } from "vue";
-
-import Loader from "@images/loader.svg";
-
 const props = defineProps({
   isLoading: Object
 })
