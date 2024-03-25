@@ -28,6 +28,7 @@ This project is crafted using a variety of modern web development tools and prac
 ## Installation
 
 To set up the Sneaker Shop locally, follow these steps:
+Verysion of Node.js used in the project - v18.16.0
 
 1. Clone the repository to your local machine.
 2. Install the necessary npm dependencies by running:
