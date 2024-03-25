@@ -1,46 +1,41 @@
-# online-shop
+# Sneakers Shop
 
-This template should help get you started developing with Vue 3 in Vite.
+Welcome to the Sneakers Shop, an internet-based storefront specializing in the sale of sneakers. This project is an example of writing an application using the Vue JavaScript library, as well as other related technologies for creating websites.
 
-## Recommended IDE Setup
+## Features
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+The Sneakers Shop offers several key features, including:
 
-## Type Support for `.vue` Imports in TS
+- **Product Viewing:** Browse all available sneakers.
+- **Sorting:** Sort sneakers by name and price for easy navigation.
+- **Search Functionality:** Quickly find sneakers with a robust search feature.
+- **Favorites:** Save your favorite products for later viewing.
+- **Shopping Cart:** Add products to a cart and proceed to checkout.
+- **Responsive Design:** Fully adaptive interface for mobile devices.
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## Technologies Used
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+This project is crafted using a variety of modern web development tools and practices:
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+- **Framework:** Built with Vue.js 3 utilizing the Composition API approach for reactive components.
+- **Routing:** Vue Router for navigation between pages.
+- **Styling:** Tailwind CSS for utility-first styling.
+- **Type Safety:** TypeScript for static type checking.
+- **Internationalization:** Vue I18n for multilanguage support.
+- **Build Tool:** Vite for an optimized frontend tooling experience.
+- **Backend:** Utilizes [Mocky](https://mokky.dev/) for backend simulation.
 
-## Customize configuration
+## Installation
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+To set up the Sneaker Shop locally, follow these steps:
 
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+1. Clone the repository to your local machine.
+2. Install the necessary npm dependencies by running:
+   ```
+   npm install
+   ```
+3. The primary branch for active development is 'main'
+4. To start the project, launch it using the command:
+   ```
+   npm run dev
+   ```
