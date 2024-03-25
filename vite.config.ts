@@ -19,7 +19,7 @@ export default defineConfig({
       vueTemplate: true,
     }),
   ],
-    resolve: {
+  resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@images': fileURLToPath(new URL('./public', import.meta.url)),

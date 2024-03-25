@@ -24,7 +24,8 @@ interface IPayload {
 
 const isCreatingOrder: Ref<boolean> = ref(false)
 const orderId: Ref<number | null> = ref(null)
-const { cartItems } = inject('cart')
+const vatRate: Ref<number> = ref(5)
+const { cartItems, closeDrawer } = inject('cart')
 const isCartEmpty: Ref<boolean> = computed(() => cartItems.value.length === 0)
 const isCartButtonDisabled: Ref<boolean> = computed(() => isCreatingOrder.value || isCartEmpty.value)
 const totalPrice: Ref<number> = computed(() => props.totalPrice)
@@ -55,7 +56,11 @@ const createOrder = async (): Promise<void> => {
 </script>
 
 <template>
-  <div class="fixed top-0 left-0 w-full h-full bg-slate-500 z-10 opacity-50"></div>
+  <div 
+    class="fixed top-0 left-0 w-full h-full bg-slate-500 z-10 opacity-50"
+    @click="closeDrawer"
+  >
+  </div>
   <div class="bg-white w-96 h-full fixed right-0 top-0 z-20 p-8">
     <DrawerHead />
 
@@ -86,15 +91,15 @@ const createOrder = async (): Promise<void> => {
             {{ $t('drawer.total') }}:
           </span>
           <div class="flex-1 border-b border-dashed"></div>
-          <b>{{ totalPrice }} $</b>
+          <b>{{ totalPrice }} {{ $t('drawer.currency') }}</b>
         </div>
 
         <div class="flex gap-2">
           <span>
-            {{ $t('drawer.tax') }} 5%:
+            {{ $t('drawer.tax') }} {{ vatRate }}%:
           </span>
           <div class="flex-1 border-b border-dashed"></div>
-          <b>{{ vatPrice }} $</b>
+          <b>{{ vatPrice }} {{ $t('drawer.currency') }}</b>
         </div>
 
         <button 

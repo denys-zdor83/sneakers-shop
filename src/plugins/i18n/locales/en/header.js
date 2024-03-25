@@ -3,4 +3,5 @@ export default {
   title: 'The best shop of sneakers in the world',
   favorites: 'Favorites',
   profile: 'Profile',
+  currency: 'USD',
 }

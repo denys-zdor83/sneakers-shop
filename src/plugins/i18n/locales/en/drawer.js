@@ -3,4 +3,5 @@ export default {
   total: 'Total',
   tax: 'Tax',
   order: 'Order',
+  currency: 'USD',
 }

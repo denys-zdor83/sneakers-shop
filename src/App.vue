@@ -57,7 +57,7 @@ provide('cart', {
       @open-drawer="openDrawer" 
     />
 
-    <div class="p-10">
+    <div class="p-10 max-sm:p-4">
       <router-view></router-view>
     </div>
   </div>
