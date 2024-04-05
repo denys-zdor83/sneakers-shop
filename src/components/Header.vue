@@ -1,9 +1,14 @@
 <script setup lang="ts">
-  const emit = defineEmits(['openDrawer'])
+import Cart from '@images/cart.svg'
+import Heart from '@images/heart.svg'
+import Profile from '@images/profile.svg'
+import Logo from '@images/logo.png'
 
-  defineProps({
-    totalPrice: Number
-  })
+const emit = defineEmits(['openDrawer'])
+
+defineProps({
+  totalPrice: Number
+})
 </script>
 
 <template>
@@ -11,7 +16,7 @@
 
     <router-link to="/">
       <div class="flex items-center gap-4 max-lg:mb-4">
-        <img src="/logo.png" alt="Logo" class="w-10">
+        <img :src="Logo" alt="Logo" class="w-10">
         <div>
           <h2 class="text-xl font-bold uppercase">{{ $t('header.shop_name') }}</h2>
           <p class="text-slate-400">
@@ -24,19 +29,19 @@
     <nav>
       <ul class="flex items-center gap-10 max-lg:justify-between max-sm:gap-2 max-sm:flex-col">
         <li @click="emit('openDrawer')" class="flex items-center gap-3 text-gray-500 hover:text-black cursor-pointer">
-          <img src="/cart.svg" alt="Cart">
+          <img :src="Cart" alt="Cart">
           <b>{{ totalPrice }} {{ $t('header.currency') }}</b>
         </li>
 
         <router-link to="/favorites">
           <li class="flex items-center gap-3 text-gray-500 hover:text-black cursor-pointer">
-            <img src="/heart.svg" alt="Favorites">
+            <img :src="Heart" alt="Favorites">
             <span>{{ $t('header.favorites') }}</span>
           </li>
         </router-link>
 
         <li class="flex items-center gap-3 text-gray-500 hover:text-black cursor-pointer">
-          <img src="/profile.svg" alt="Profile">
+          <img :src="Profile" alt="Profile">
           <span>{{ $t('header.profile') }}</span>
         </li>
       </ul>

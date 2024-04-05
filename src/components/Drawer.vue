@@ -5,6 +5,10 @@ import Infoblock from '@components/Infoblock.vue';
 
 import { asyncGlobalSpinner } from "@loader-worker"
 import { API } from '@api'
+
+import PackageIcon from '@images/package-icon.png'
+import OrderSuccessIcon from '@images/order-success-icon.png'
+
 import type { 
   IOneOrder,
   RPostAllOrders,
@@ -72,13 +76,13 @@ const createOrder = async (): Promise<void> => {
         v-if="!totalPrice && !orderId"
         :title="$t('messages.empty_cart.title')" 
         :description="$t('messages.empty_cart.description')" 
-        imageUrl="/package-icon.png" 
+        :imageUrl="PackageIcon" 
       />
       <Infoblock 
         v-if="orderId"
         :title="$t('messages.order_sent.title', { orderId })" 
         :description="$t('messages.order_sent.description')" 
-        imageUrl="/order-success-icon.png" 
+        :imageUrl="OrderSuccessIcon" 
       />
     </div>
 

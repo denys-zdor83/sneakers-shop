@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Close from '@images/close.svg'
+
 const emit = defineEmits(['onClickRemove'])
 
 defineProps({
@@ -23,7 +25,7 @@ defineProps({
         <b class="flex-1">{{ price }} {{ $t('card.currency') }}</b>
         <img 
           class="opacity-40 hover:opacity-100 cursor-pointer transition" 
-          src="/close.svg"
+          :src="Close"
           alt="Close"
           @click="emit('onClickRemove')"
         >

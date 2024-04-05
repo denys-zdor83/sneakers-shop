@@ -22,11 +22,11 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@images': fileURLToPath(new URL('./public', import.meta.url)),
       '@loader-worker': fileURLToPath(new URL('./src/workers/loading-worker', import.meta.url)),
       '@axios': fileURLToPath(new URL('./src/plugins/axios', import.meta.url)),
       '@api': fileURLToPath(new URL('./src/api', import.meta.url)),
       '@components': fileURLToPath(new URL('./src/components', import.meta.url)),
+      '@images': fileURLToPath(new URL('./src/assets/images', import.meta.url)),
     }
   },
 })

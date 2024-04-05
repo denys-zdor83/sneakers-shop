@@ -5,11 +5,12 @@ import Infoblock from '@components/Infoblock.vue';
 import { API } from '@api'
 import { asyncGlobalSpinner } from "@loader-worker"
 
+import PackageIcon from '@images/package-icon.png'
+
 import type { 
   IOneGoodsItem,
   RGetAllFavorites,
 } from "@api/interfaces";
-import { computed } from 'vue';
 
 // --- Interfaces
 interface IParams {
@@ -45,7 +46,7 @@ onMounted(async () => {
     v-if="!isFavorites"
     :title="$t('messages.empty_favorites.title')" 
     :description="$t('messages.empty_favorites.description')" 
-    imageUrl="/package-icon.png" 
+    :imageUrl="PackageIcon" 
   />
   <CardList 
     :items="favorites"

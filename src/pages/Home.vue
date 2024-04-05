@@ -5,6 +5,9 @@ import CardList from '@components/CardList.vue'
 
 import { asyncGlobalSpinner } from "@loader-worker"
 import { API } from '@api'
+
+import Search from '@images/search.svg'
+
 import type { 
   IOneOrder, 
   RGetAllFavorites, 
@@ -180,7 +183,7 @@ onMounted(async () => {
       </select>
 
       <div class="relative flex-1">
-        <img class="absolute left-4 top-3" src="/search.svg" alt="Search">
+        <img class="absolute left-4 top-3" :src="Search" alt="Search">
         <input 
           type="text"
           :placeholder="$t('main_page.search')"  

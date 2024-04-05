@@ -1,4 +1,9 @@
 <script setup lang="ts">
+import Like2 from '@images/like-2.svg'
+import Like1 from '@images/like-1.svg'
+import Checked from '@images/checked.svg'
+import Plus from '@images/plus.svg'
+
 defineProps({
   id: Number,
   price: Number,
@@ -13,23 +18,25 @@ defineProps({
 
 <template>
   <div
-    class="relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
+    class="flex flex-col justify-between relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
   >
     <img 
       v-if="onClickFavorite"
-      :src="isFavorite ? '/like-2.svg' : '/like-1.svg'" 
+      :src="isFavorite ? Like2 : Like1" 
       alt="Favorite" 
       class="absolute top-8 left-8" 
       @click="onClickFavorite"
     />
-    <img 
-      class="w-full object-contain" 
-      :src="imageUrl" 
-      alt="Sneaker" 
-    />
-    <p class="mt-2">
-      {{ title }}
-    </p>
+    <div>
+      <img 
+        class="w-full object-contain" 
+        :src="imageUrl" 
+        alt="Sneaker" 
+      />
+      <p class="mt-2">
+        {{ title }}
+      </p>
+    </div>
 
     <div 
       v-if="onClickAdd"
@@ -42,7 +49,7 @@ defineProps({
         <span class="font-bold">{{ price }} {{ $t('card.currency') }}</span>
       </div>
       <img 
-        :src="isAdded ? '/checked.svg' : '/plus.svg'" 
+        :src="isAdded ? Checked : Plus" 
         alt="Plus" 
         @click="onClickAdd" 
       />

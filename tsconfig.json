@@ -13,9 +13,6 @@
       "@loader-worker": [
         "./src/workers/loading-worker"
       ],
-      "@images": [
-        "../public"
-      ],
       "@axios": [
         "./src/plugins/axios"
       ],
@@ -24,6 +21,9 @@
       ],           
       "@components": [
         "./src/components"
+      ],
+      "@images": [
+        "./src/assets/images"
       ],
     }
   }
