@@ -1,13 +1,6 @@
-<template>
-  <div
-    class="spiner-wrapper spiner-wrapper__page"
-    v-if="loading"
-  >
-    <img src="/loader.svg" alt="Loader" />
-  </div>
-</template>
-
 <script setup lang="ts">
+import Loader from '@images/loader.svg'
+
 const props = defineProps({
   isLoading: Object
 })
@@ -21,6 +14,16 @@ watch(
   }
 );
 </script>
+
+<template>
+  <div
+    class="spiner-wrapper spiner-wrapper__page"
+    v-if="loading"
+  >
+    <img :src="Loader" alt="Loader" />
+  </div>
+</template>
+
 
 <style lang="scss" scoped>
 .spiner-wrapper {

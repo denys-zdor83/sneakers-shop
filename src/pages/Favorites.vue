@@ -5,11 +5,12 @@ import Infoblock from '@components/Infoblock.vue';
 import { API } from '@api'
 import { asyncGlobalSpinner } from "@loader-worker"
 
+import PackageIcon from '@images/package-icon.png'
+
 import type { 
   IOneGoodsItem,
   RGetAllFavorites,
 } from "@api/interfaces";
-import { computed } from 'vue';
 
 // --- Interfaces
 interface IParams {
@@ -20,7 +21,7 @@ interface IParams {
 const favorites: Ref<IOneGoodsItem[]> = ref([])
 const isFavorites: Ref<boolean> = computed(() => favorites.value.length > 0)
 
-onMounted(async () => {
+const GetFavorites = async () => {
   try {
     const params: IParams = {
       _relations: 'goods'
@@ -32,9 +33,11 @@ onMounted(async () => {
     favorites.value = data.map((item: RGetAllFavorites) => item.good)
 
   } catch (error) {
-    console.log(error)
+    console.error(`[GetFavorites]: error ${error}`)
   }
-})
+}
+
+onMounted(GetFavorites)
 </script>
 
 <template>
@@ -45,7 +48,7 @@ onMounted(async () => {
     v-if="!isFavorites"
     :title="$t('messages.empty_favorites.title')" 
     :description="$t('messages.empty_favorites.description')" 
-    imageUrl="/package-icon.png" 
+    :imageUrl="PackageIcon" 
   />
   <CardList 
     :items="favorites"

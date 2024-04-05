@@ -8,8 +8,8 @@ export const ErrorInterceptor = (error: AxiosError): Promise<AxiosResponse> => {
 
   if (getJsonErrorData.status === 404) {
     toast.error(responseData.message);
-
-    return Promise.reject(responseData);
+  
+    return Promise.reject(responseData.message);
   }
 
   return Promise.reject(getJsonErrorData);
