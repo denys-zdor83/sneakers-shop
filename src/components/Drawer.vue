@@ -52,7 +52,7 @@ const createOrder = async (): Promise<void> => {
 
     return data
   } catch (error) {
-    console.log(error)
+    console.error(`[createOrder]: error ${error}`)
   } finally {
     isCreatingOrder.value = false
   }

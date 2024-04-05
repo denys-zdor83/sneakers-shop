@@ -21,7 +21,7 @@ interface IParams {
 const favorites: Ref<IOneGoodsItem[]> = ref([])
 const isFavorites: Ref<boolean> = computed(() => favorites.value.length > 0)
 
-onMounted(async () => {
+const GetFavorites = async () => {
   try {
     const params: IParams = {
       _relations: 'goods'
@@ -33,9 +33,11 @@ onMounted(async () => {
     favorites.value = data.map((item: RGetAllFavorites) => item.good)
 
   } catch (error) {
-    console.log(error)
+    console.error(`[GetFavorites]: error ${error}`)
   }
-})
+}
+
+onMounted(GetFavorites)
 </script>
 
 <template>

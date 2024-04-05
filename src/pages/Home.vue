@@ -69,7 +69,8 @@ const addToFavorites = async (item: IOneOrder): Promise<void> => {
       item.favoriteId = null
     }
   } catch (error) {
-    console.log(error)
+    console.error(`[addToFavorites]: error ${error}`)
+
   }
 }
 
@@ -93,7 +94,7 @@ const fetchFavorites = async (): Promise<void> => {
       }
     })
   } catch (error) {
-    console.log(error)
+    console.error(`[fetchFavorites]: error ${error}`)
   }
 }
 
@@ -121,7 +122,7 @@ const fetchItems = async (): Promise<void> => {
     })
 
   } catch (error) {
-    console.log(error)
+    console.error(`[fetchItems]: error ${error}`)
   }
 }
 
@@ -149,6 +150,8 @@ watch(
     })
   }
 )
+
+
 
 onMounted(async () => {
   const localCart: string = localStorage.getItem('cart')
