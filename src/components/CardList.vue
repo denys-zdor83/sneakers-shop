@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Card from '@components/Card.vue'
 
-defineProps({
+const props = defineProps({
   items: Array,
   isFavorites: Boolean,
 })

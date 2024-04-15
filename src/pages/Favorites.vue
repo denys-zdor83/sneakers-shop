@@ -8,6 +8,7 @@ import { asyncGlobalSpinner } from "@loader-worker"
 import PackageIcon from '@images/package-icon.png'
 
 import type { 
+  IOneOrder,
   IOneGoodsItem,
   RGetAllFavorites,
 } from "@api/interfaces";
@@ -29,11 +30,33 @@ const GetFavorites = async () => {
     const [data]: RGetAllFavorites[] = await asyncGlobalSpinner(
       API.UrlsService.GetAllFavorites(params)
     )
-
-    favorites.value = data.map((item: RGetAllFavorites) => item.good)
+    
+    favorites.value = data.map((item: RGetAllFavorites) => {
+      return {
+        ...item.good,
+        isFavorite: true,
+        favoriteId: item.id,
+      }
+    })
 
   } catch (error) {
     console.error(`[GetFavorites]: error ${error}`)
+  }
+}
+
+const removeFromFavorites = async (item: IOneOrder): Promise<void> => { 
+  try {
+      item.isFavorite = false
+      
+      await asyncGlobalSpinner(
+        API.UrlsService.DeleteFromFavorites(item.favoriteId)
+      )
+      
+      await GetFavorites()
+
+  } catch (error) {
+    console.error(`[addToFavorites]: error ${error}`)
+
   }
 }
 
@@ -50,8 +73,9 @@ onMounted(GetFavorites)
     :description="$t('messages.empty_favorites.description')" 
     :imageUrl="PackageIcon" 
   />
-  <CardList 
+  <CardList
+    v-else
+    @add-to-favorites="removeFromFavorites"
     :items="favorites"
-    :isFavorites="true"
   />
 </template>
