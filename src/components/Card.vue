@@ -4,7 +4,7 @@ import Like1 from '@images/like-1.svg'
 import Checked from '@images/checked.svg'
 import Plus from '@images/plus.svg'
 
-defineProps({
+const props = defineProps({
   id: Number,
   price: Number,
   title: String,
@@ -21,7 +21,6 @@ defineProps({
     class="flex flex-col justify-between relative bg-white border border-slate-100 rounded-3xl p-8 cursor-pointer transition hover:-translate-y-2 hover:shadow-xl"
   >
     <img 
-      v-if="onClickFavorite"
       :src="isFavorite ? Like2 : Like1" 
       alt="Favorite" 
       class="absolute top-8 left-8" 
