@@ -23,8 +23,6 @@ const createGlobalLoader = (): void => {
   window["loading"] = createApp(loader, {
     isLoading: isLoading
   }).mount("#loading");
-
-  startGlobalSpinner();
 };
 
 const asyncGlobalSpinner = async (

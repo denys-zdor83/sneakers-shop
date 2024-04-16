@@ -9,7 +9,7 @@ import PackageIcon from '@images/package-icon.png'
 
 import type { 
   IOneOrder,
-  IOneGoodsItem,
+  IOneProductItem,
   RGetAllFavorites,
 } from "@api/interfaces";
 
@@ -19,13 +19,13 @@ interface IParams {
 }
 // --- Interfaces
 
-const favorites: Ref<IOneGoodsItem[]> = ref([])
+const favorites: Ref<IOneProductItem[]> = ref([])
 const isFavorites: Ref<boolean> = computed(() => favorites.value.length > 0)
 
 const GetFavorites = async () => {
   try {
     const params: IParams = {
-      _relations: 'goods'
+      _relations: 'products'
     }
     const [data]: RGetAllFavorites[] = await asyncGlobalSpinner(
       API.UrlsService.GetAllFavorites(params)
@@ -33,7 +33,7 @@ const GetFavorites = async () => {
     
     favorites.value = data.map((item: RGetAllFavorites) => {
       return {
-        ...item.good,
+        ...item.product,
         isFavorite: true,
         favoriteId: item.id,
       }
@@ -55,7 +55,7 @@ const removeFromFavorites = async (item: IOneOrder): Promise<void> => {
       await GetFavorites()
 
   } catch (error) {
-    console.error(`[addToFavorites]: error ${error}`)
+    console.error(`[removeFromFavorites]: error ${error}`)
 
   }
 }
