@@ -4,6 +4,7 @@ import main_page from "./main-page"
 import drawer from "./drawer"
 import favorites from "./favorites"
 import messages from "./messages"
+import product from "./product"
 
 export const EN_LOCALE = {
   header,
@@ -12,4 +13,5 @@ export const EN_LOCALE = {
   drawer,
   favorites,
   messages,
+  product,
 }

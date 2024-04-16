@@ -12,7 +12,7 @@ import type {
   IOneOrder, 
   RGetAllFavorites, 
   RAddToFavorites, 
-  RGetAllGoods 
+  RGetAllProducts 
 } from "@api/interfaces";
 
 // ---Interfaces
@@ -21,8 +21,8 @@ interface IFilters {
   searchQuery: string
 }
 
-interface GoodsItemId {
-  good_id: number
+interface ProductItemId {
+  product_id: number
 }
 
 interface IParams {
@@ -49,13 +49,13 @@ const onClickPlus = (item: IOneOrder): void => {
 const addToFavorites = async (item: IOneOrder): Promise<void> => {
   try {
     if (!item.isFavorite) {
-      const goodsItemId: GoodsItemId = {
-        good_id: item.id,
+      const ProductItemId: ProductItemId = {
+        product_id: item.id,
       }
       item.isFavorite = true
 
       const [data]: RAddToFavorites = await asyncGlobalSpinner(
-        API.UrlsService.AddToFavorites(goodsItemId)
+        API.UrlsService.AddToFavorites(ProductItemId)
       )   
 
       item.favoriteId = data.id
@@ -81,7 +81,7 @@ const fetchFavorites = async (): Promise<void> => {
     )
     
     products.value = products.value.map((item: IOneOrder) => {
-      const favorite = favorites.find((favorite: RGetAllFavorites) => favorite.good_id === item.id)
+      const favorite = favorites.find((favorite: RGetAllFavorites) => favorite.product_id === item.id)
 
       if (!favorite) {
         return item
@@ -108,11 +108,11 @@ const fetchItems = async (): Promise<void> => {
   }
 
   try {
-    const [data]: RGetAllGoods[] = await asyncGlobalSpinner(
-      API.UrlsService.GetAllGoods(params)
+    const [data]: RGetAllProducts[] = await asyncGlobalSpinner(
+      API.UrlsService.GetAllProducts(params)
     )
   
-    products.value = data.map((item: RGetAllGoods) => {
+    products.value = data.map((item: RGetAllProducts) => {
       return {
         ...item,
         isAdded: false,

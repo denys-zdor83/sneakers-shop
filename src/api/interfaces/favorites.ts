@@ -2,7 +2,7 @@ export interface IGetAllFavoritesParams {
     _relations: string;
 }
 
-interface IOneGoodsItem {
+interface IOneProductItem {
     id: number;
     imageUrl: string;
     price: number
@@ -10,15 +10,15 @@ interface IOneGoodsItem {
 }
 
 export interface RGetAllFavorites {
-    good: IOneGoodsItem;
+    product: IOneProductItem;
     id: number
 }
 
 export interface IAddToFavoritesData {
-    good_id: number;
+    product_id: number;
 }
 
 export interface RAddToFavorites {
-    good_id: number;
+    product_id: number;
     id: number;
 }

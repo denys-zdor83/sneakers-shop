@@ -1,5 +1,5 @@
 export * from "./orders.ts";
-export * from "./goods.ts";
+export * from "./products.ts";
 export * from "./favorites.ts";
 
 import type { AxiosResponse } from "axios";

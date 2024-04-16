@@ -1,9 +1,9 @@
-export interface IGetAllGoodsParams {
+export interface IGetAllProductsParams {
     sortBy: string;
     title?: string;
 }
 
-export interface RGetAllGoods {
+export interface RGetAllProducts {
     id: number;
     imageUrl: string;
     price: number;

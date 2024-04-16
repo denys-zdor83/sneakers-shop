@@ -2,8 +2,8 @@ import axiosApiInstance from "@axios";
 import { EndpointsEnum } from "@api/http-common/prefix.enum";
 import type {
   ServiceResponseType,
-  IGetAllGoodsParams,
-  RGetAllGoods,
+  IGetAllProductsParams,
+  RGetAllProducts,
   IPostAllOrdersData,
   RPostAllOrders,
   IGetAllFavoritesParams,
@@ -13,10 +13,16 @@ import type {
 } from "@api/interfaces";
 
 export class UrlsService {
-  public GetAllGoods (
-    params: IGetAllGoodsParams,
-  ): ServiceResponseType<RGetAllGoods> {
-    return axiosApiInstance.get(EndpointsEnum.Urls.AllGoods, { params });
+  public GetAllProducts (
+    params: IGetAllProductsParams,
+  ): ServiceResponseType<RGetAllProducts[]> {
+    return axiosApiInstance.get(EndpointsEnum.Urls.AllProducts, { params });
+  }
+
+  public GetProduct (
+    id: number,
+  ): ServiceResponseType<RGetAllProducts> {
+    return axiosApiInstance.get(EndpointsEnum.Urls.OneProduct(id));
   }
 
   public PostAllOrders (
