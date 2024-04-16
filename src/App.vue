@@ -51,7 +51,7 @@ provide('cart', {
     :vatPrice="vatPrice"
   />
 
-  <div class="w-4/5 m-auto bg-white rounded-xl shadow-xl mt-14">
+  <div class="max-sm:w-11/12 w-4/5 m-auto bg-white rounded-xl shadow-xl max-sm:mt-10 mt-14 max-sm:mb-10 mb-14">
     <Header
       :totalPrice="totalPrice"
       @open-drawer="openDrawer" 

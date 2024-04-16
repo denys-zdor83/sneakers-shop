@@ -1,4 +1,5 @@
 export default {
   description: 'Product description',
-  sizes: 'Available sizes',
+  sizes: 'Choose size',
+  add_to_cart: 'Add to cart',
 }
