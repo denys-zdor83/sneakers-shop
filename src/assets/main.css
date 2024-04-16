@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --blue_100: #a5c1ff;
+  --green_100: rgb(236 252 203);
   --spiner: #ffffffa1;
 }
 
 body {
-  background-color: var(--blue_100);
+  background-color: var(--green_100);
 }

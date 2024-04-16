@@ -29,11 +29,11 @@ const props = defineProps({
       />
       <div>
         <img 
-          class="w-full object-contain" 
+          class="max-sm:h-56 h-40 w-full object-contain" 
           :src="imageUrl" 
           alt="Sneaker" 
         />
-        <p class="mt-2">
+        <p class="card-title mt-2">
           {{ title }}
         </p>
       </div>
@@ -57,3 +57,13 @@ const props = defineProps({
     </div>
   </router-link>
 </template>
+
+<style scoped lang="scss">
+.card-title {
+  width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>
