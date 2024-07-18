@@ -51,6 +51,6 @@ Verysion of Node.js used in the project - v18.16.0
 2. Third-Party Libraries: Import external libraries or packages.
 3. Internal Components: Import your project's internal components or utilities.
 4. Styles: Import CSS or SASS/LESS styles.
-5. Typescript: Types, interfaces, all types descriptions.
-6. Images imports.
+5. Images imports.
+6. Typescript: Types, interfaces, all types descriptions.
 7. Other Assets: Import other assets such as JSON files, functions helpers, state managment selectors and actions.
