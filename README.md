@@ -40,3 +40,17 @@ Verysion of Node.js used in the project - v18.16.0
    ```
    npm run dev
    ```
+5. To run a bundle building, launch a following command:
+   ```
+   npm run build
+   ```
+
+## To maintain a clean and consistent codebase, please follow the import order outlined below in all files:
+
+1. Framework Imports: Import core modules and components from the framework or library you're using (e.g., React, Vue, Angular).
+2. Third-Party Libraries: Import external libraries or packages.
+3. Internal Components: Import your project's internal components or utilities.
+4. Styles: Import CSS or SASS/LESS styles.
+5. Typescript: Types, interfaces, all types descriptions.
+6. Images imports.
+7. Other Assets: Import other assets such as JSON files, functions helpers, state managment selectors and actions.
